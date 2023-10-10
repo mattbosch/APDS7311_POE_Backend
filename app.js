@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGODB)
 })
 
 app.use(helmet())
-app.use(cors({ origin: 'https://localhost:4000', optionSuccessStatus: 200}))
+app.use(cors({ origin: 'https://localhost:3000', optionSuccessStatus: 200}))
 app.use(express.json())
 app.use(hsts)
 
