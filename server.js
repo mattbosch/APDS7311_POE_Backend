@@ -6,7 +6,6 @@ const port = 3000
 
 //create server on port 3000
 const server = http.createServer({
-    hostname: 'localhost',
     key: fs.readFileSync('./keys/privatekey.pem'),
     cert: fs.readFileSync('./keys/certificate.pem'),
     passphrase: 'apds'
