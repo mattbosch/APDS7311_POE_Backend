@@ -1,8 +1,8 @@
 ###
-@baseUrl = https://localhost:4000
+@baseUrl = https://localhost:3000
 @postId = 6523f2cb8f35b5d7c8d1a382
 ###
-POST https://localhost:4000/api/user/ HTTP/1.1
+POST https://localhost:3000/api/user/ HTTP/1.1
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
     "firstName": "John"
 }
 ###
-POST https://localhost:4000/api/auth/ HTTP/1.1
+POST https://localhost:3000/api/auth/ HTTP/1.1
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 GET https://localhost:3000/api/user HTTP/1.1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFhY2JiZjE1NTJkNzY0NWZjNjZmNjEiLCJpYXQiOjE2OTY4NTM5MzR9.CpsHlB2gNhFKCEEVuny3hZJNXH6ruDbX9FAbIpo3Lgs
 ###
-POST https://localhost:4000/api/posts/ HTTP/1.1
+POST https://localhost:3000/api/posts/ HTTP/1.1
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFhY2JiZjE1NTJkNzY0NWZjNjZmNjEiLCJpYXQiOjE2OTY4NTM5MzR9.CpsHlB2gNhFKCEEVuny3hZJNXH6ruDbX9FAbIpo3Lgs
 
@@ -32,7 +32,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFhY2JiZjE1
     "departmentCode": "World123"
 }
 ###
-GET https://localhost:4000/api/posts HTTP/1.1
+GET https://localhost:3000/api/posts HTTP/1.1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFhY2JiZjE1NTJkNzY0NWZjNjZmNjEiLCJpYXQiOjE2OTY4NTM5MzR9.CpsHlB2gNhFKCEEVuny3hZJNXH6ruDbX9FAbIpo3Lgs
 ###
 DELETE {{baseUrl}}/api/posts/{{postId}}
