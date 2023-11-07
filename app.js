@@ -10,8 +10,13 @@ const hsts = require('./middleware/hsts')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const morgan = require('morgan')
+const authRouter = require('./routes/auth');
 
-const bruteforce = new ExpressBrute(store)
+const bruteforce = new ExpressBrute(store, {
+    freeRetries: 5,
+    minWait: 1000,
+    maxWait: 15 * 60 * 1000,
+  });
 
 //Cater for CORS
 app.use((reg, res, next) => {
@@ -46,5 +51,8 @@ app.use(hsts)
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/user', require('./routes/user'))
 app.use('/api/posts', require('./routes/posts'))
+
+//Express-brute added to login route
+authRouter.post('/', bruteforce.prevent);
 
 module.exports = app
