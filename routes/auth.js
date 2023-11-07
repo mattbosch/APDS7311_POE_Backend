@@ -15,7 +15,9 @@ router.post('/', async(req, res)=>{
           return res.status(401).json({ error: 'Incorrect username or password' });
         }
 
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY);
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+          expiresIn: 7200 // token expires in 2 hours
+        });
         res.send({token})
 })
 module.exports = router
