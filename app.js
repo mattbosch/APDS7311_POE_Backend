@@ -1,18 +1,27 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const ExpressBrute = require('express-brute')
+const store = new ExpressBrute.MemoryStore()
 const https = require('https')
 const fs = require('fs')
 const helmet = require('helmet')
 const hsts = require('./middleware/hsts')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const morgan = require('morgan')
+
+const bruteforce = new ExpressBrute(store)
 
 //Cater for CORS
 app.use((reg, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization')
     res.setHeader('Access-Control-Allow-Methods', '*')
+    res.setHeader(
+        'Content-Security-Policy',
+        "default-src 'self' http://localhost:4200"
+      );
     next()
 })
 
@@ -27,8 +36,10 @@ mongoose.connect(process.env.MONGODB)
     console.log('MongoDB Connection Error.', error)
 })
 
+//Applying middleware
+app.use(morgan('dev'))
 app.use(helmet())
-app.use(cors({ origin: 'https://localhost:3000', optionSuccessStatus: 200}))
+app.use(cors({ origin: 'http://localhost:4200', methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', optionSuccessStatus: 204}))
 app.use(express.json())
 app.use(hsts)
 
